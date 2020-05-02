@@ -16,4 +16,8 @@ public class Word {
     public ArrayList<String> getNext() {
         return next;
     }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
 }
