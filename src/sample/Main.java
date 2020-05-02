@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.*;
 
 import java.util.ArrayList;
@@ -32,11 +31,14 @@ public class Main extends Application {
     public ArrayList<String> getWords() throws IOException {
        ArrayList<String> words = new ArrayList<>();
         BufferedReader reader = new BufferedReader(
-                new FileReader("C:\\Users\\hashi\\Documents\\work\\cc\\FakePoet\\res\\tolkein.txt"));
+                new FileReader("res/tolkein.txt"));
         String line;
         while ((line = reader.readLine()) != null) {
             String[] wordSplit = line.split(" ");
             for(String string: wordSplit){
+                string = string.replace(",","");
+                string = string.replace(".","");
+                string = string.toLowerCase();
                 if(string.length()>0){
                     words.add(string);
                 }
