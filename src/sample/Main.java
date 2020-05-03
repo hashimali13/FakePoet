@@ -16,7 +16,6 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         System.out.println(new File("src/sample/sample.fxml").toURI().toURL());
-
         primaryStage.setTitle("Fake Poet");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();

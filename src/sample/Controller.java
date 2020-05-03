@@ -3,6 +3,8 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Controller {
     @FXML
     public Label helloWorld;
-    public Label output;
+    public TextArea output;
 
     public Controller(){
 
