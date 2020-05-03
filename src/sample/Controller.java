@@ -39,11 +39,9 @@ public class Controller {
         else{
             switch(comboVal.getValue().toString()){
                 case "William Shakespeare":
-                    System.out.println("William Shakespeare");
                     name = "res/shakespeare.txt";
                     break;
                 case "J.R.R Tolkien":
-                    System.out.println("J.R.R Tolkien");
                     name = "res/tolkien.txt";
                     break;
                 case "Emily Elizabeth Dickinson":
@@ -79,8 +77,7 @@ public class Controller {
         while ((line = reader.readLine()) != null) {
             String[] wordSplit = line.split(" ");
             for(String string: wordSplit){
-                string = string.replace(",","");
-                string = string.replace(".","");
+                string = string.replaceAll("[^a-zA-Z?'-]", "");
                 string = string.toLowerCase();
                 if(string.length()>0){
                     words.add(string);
