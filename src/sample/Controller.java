@@ -47,7 +47,9 @@ public class Controller {
                 case "Emily Elizabeth Dickinson":
                     name = "res/dickinson.txt";
                     break;
-
+                case "Walt Whitman":
+                    name = "res/whitman.txt";
+                    break;
             }
         }
         try{
@@ -77,7 +79,7 @@ public class Controller {
         while ((line = reader.readLine()) != null) {
             String[] wordSplit = line.split(" ");
             for(String string: wordSplit){
-                string = string.replaceAll("[^a-zA-Z?'-]", "");
+                string = string.replaceAll("[^a-zA-Z?!'-]", "");
                 string = string.toLowerCase();
                 if(string.length()>0){
                     words.add(string);
@@ -138,7 +140,11 @@ public class Controller {
                     newran = ThreadLocalRandom.current().nextInt(0, initial.getNext().size());
                 }
             }
-            finalPoem = finalPoem.substring(0,finalPoem.length()-1)+". ";
+            if(finalPoem.charAt(finalPoem.length()-2) == '?' || finalPoem.charAt(finalPoem.length()-2) == '!' ){
+            }
+            else{
+                finalPoem = finalPoem.substring(0,finalPoem.length()-1)+". ";
+            }
 
         }
         return finalPoem;

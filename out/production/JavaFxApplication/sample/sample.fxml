@@ -17,6 +17,7 @@
                         <String fx:value="William Shakespeare" />
                         <String fx:value="J.R.R Tolkien" />
                         <String fx:value="Emily Elizabeth Dickinson" />
+                        <String fx:value="Walt Whitman" />
                     </FXCollections>
                 </items>
             </ComboBox>
