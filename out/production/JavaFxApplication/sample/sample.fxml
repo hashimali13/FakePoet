@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -8,13 +10,42 @@
       <children>
       <AnchorPane layoutX="14.0" layoutY="84.0" prefHeight="401.0" prefWidth="399.0">
          <children>
-                <Button layoutX="28.0" layoutY="397.0" onAction="#sayHelloWorld" text="Say 'Hello World'" />
-                <Label fx:id="helloWorld" layoutX="35.0" layoutY="132.0" prefHeight="18.0" prefWidth="65.0" />
+                <Button layoutX="50.0" layoutY="292.0" onAction="#btnHandler" prefHeight="25.0" prefWidth="149.0" text="Generate Poem!" />
+            <ComboBox fx:id="comboVal" layoutX="50.0" layoutY="71.0" prefWidth="150.0" value="Choose Poet">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Three" />
+                        <String fx:value="Two" />
+                        <String fx:value="One" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label layoutX="50.0" layoutY="39.0" prefHeight="25.0" prefWidth="150.0" text="Select a Poet">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="119.0" prefHeight="20.0" prefWidth="150.0" text="Sentences">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="201.0" prefHeight="17.0" prefWidth="150.0" text="Words Per Sentence">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="sentence" layoutX="50.0" layoutY="160.0" />
+            <TextField fx:id="length" layoutX="50.0" layoutY="240.0" />
+
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="426.0" layoutY="72.0" prefHeight="446.0" prefWidth="345.0">
+      <AnchorPane layoutX="291.0" layoutY="72.0" prefHeight="448.0" prefWidth="480.0">
          <children>
-            <Label fx:id="output" alignment="TOP_LEFT" layoutX="14.0" layoutY="17.0" prefHeight="410.0" prefWidth="326.0" wrapText="true" />
+            <TextArea fx:id="output" editable="false" layoutX="12.0" layoutY="17.0" prefHeight="410.0" prefWidth="448.0" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font></TextArea>
          </children></AnchorPane>
       <Label layoutX="275.0" layoutY="28.0" prefHeight="43.0" prefWidth="176.0" text="Fake Poet" textAlignment="RIGHT">
          <font>

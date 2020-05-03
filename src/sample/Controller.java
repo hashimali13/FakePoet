@@ -2,9 +2,7 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-
+import javafx.scene.control.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,17 +15,37 @@ public class Controller {
     @FXML
     public Label helloWorld;
     public TextArea output;
-
+    public ComboBox comboVal;
+    public TextField sentence;
+    public TextField length;
+    int sentence1;
+    int length1;
     public Controller(){
-
+        this.length1=0;
+        this.sentence1=0;
     }
 
     @FXML
-    public void sayHelloWorld(ActionEvent actionEvent) throws IOException {
+    public void btnHandler(ActionEvent actionEvent) throws IOException {
+        System.out.println(comboVal.getValue());
+        System.out.println(sentence.getText());
+        System.out.println(length.getText());
+        try{
+            length1 =  Integer.parseInt(length.getText());
+            sentence1 =  Integer.parseInt(sentence.getText());
+        }
+        catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Invalid Sentence Inputs");
+            alert.setContentText("One of the sentence inputs was not an integer.");
+            alert.showAndWait();
+        }
+
+        System.out.println(length.getText());
+
         output.setText(createPoem());
         System.out.println(output);
-        helloWorld.setText("rand");
-
 
     }
     @FXML
@@ -76,35 +94,39 @@ public class Controller {
 
     public String generatePoem(ArrayList<Word> wordList){
         String finalPoem ="";
-        int ran = ThreadLocalRandom.current().nextInt(0, wordList.size());
-        Word initial = wordList.get(ran);
-        String firstWord = initial.getWord().substring(0,1).toUpperCase()+ initial.getWord().substring(1);
-        finalPoem+= firstWord + " ";
-        int newran = 0;
-        if(initial.getNext().size()<=1){
-        }
-        else{
-             newran = ThreadLocalRandom.current().nextInt(0, initial.getNext().size());
-        }
-        ArrayList<String> children = initial.getNext();
-        for(int i =0;i<100;i++){
-            Word tempWord = null;
-            for(Word word : wordList){
-                if(word.getWord().equals(children.get(newran))){
-                    tempWord = word;
-                }
-            }
-            initial = tempWord;
-            finalPoem += initial.getWord() +" ";
-            children = initial.getNext();
+        for(int l=0;l<sentence1;l++){
+            int ran = ThreadLocalRandom.current().nextInt(0, wordList.size());
+            Word initial = wordList.get(ran);
+            String firstWord = initial.getWord().substring(0,1).toUpperCase()+ initial.getWord().substring(1);
+            finalPoem+= firstWord + " ";
+            int newran = 0;
             if(initial.getNext().size()<=1){
-                newran =0;
             }
             else{
                 newran = ThreadLocalRandom.current().nextInt(0, initial.getNext().size());
             }
+            ArrayList<String> children = initial.getNext();
+            System.out.println(length1/2);
+            for(int i =0;i<(length1-1);i++){
+                Word tempWord = null;
+                for(Word word : wordList){
+                    if(word.getWord().equals(children.get(newran))){
+                        tempWord = word;
+                    }
+                }
+                initial = tempWord;
+                finalPoem += initial.getWord() +" ";
+                children = initial.getNext();
+                if(initial.getNext().size()<=1){
+                    newran =0;
+                }
+                else{
+                    newran = ThreadLocalRandom.current().nextInt(0, initial.getNext().size());
+                }
+            }
+            finalPoem = finalPoem.substring(0,finalPoem.length()-1)+". ";
+
         }
-        finalPoem += finalPoem.substring(0,finalPoem.length()-1)+".";
         return finalPoem;
     }
 
