@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Word {
     String word;
     ArrayList<String> next;
-    public Word(){
-        word="test";
+    public Word(String word, ArrayList<String> list){
+        this.word = word;
+        this.next = list;
     }
 
     public String getWord() {
@@ -20,4 +21,5 @@ public class Word {
     public void setWord(String word) {
         this.word = word;
     }
+    public void setNext(ArrayList<String> next){this.next = next;}
 }
