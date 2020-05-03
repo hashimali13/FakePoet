@@ -14,9 +14,9 @@
             <ComboBox fx:id="comboVal" layoutX="50.0" layoutY="71.0" prefWidth="150.0" value="Choose Poet">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Three" />
-                        <String fx:value="Two" />
-                        <String fx:value="One" />
+                        <String fx:value="William Shakespeare" />
+                        <String fx:value="J.R.R Tolkien" />
+                        <String fx:value="Emily Elizabeth Dickinson" />
                     </FXCollections>
                 </items>
             </ComboBox>

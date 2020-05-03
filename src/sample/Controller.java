@@ -20,6 +20,7 @@ public class Controller {
     public TextField length;
     int sentence1;
     int length1;
+    String name;
     public Controller(){
         this.length1=0;
         this.sentence1=0;
@@ -27,9 +28,30 @@ public class Controller {
 
     @FXML
     public void btnHandler(ActionEvent actionEvent) throws IOException {
-        System.out.println(comboVal.getValue());
-        System.out.println(sentence.getText());
-        System.out.println(length.getText());
+        if(comboVal.getValue().equals("Choose Poet")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("No Poet Chosen");
+            alert.setContentText("Please choose a poet.");
+            alert.showAndWait();
+            return;
+        }
+        else{
+            switch(comboVal.getValue().toString()){
+                case "William Shakespeare":
+                    System.out.println("William Shakespeare");
+                    name = "res/shakespeare.txt";
+                    break;
+                case "J.R.R Tolkien":
+                    System.out.println("J.R.R Tolkien");
+                    name = "res/tolkien.txt";
+                    break;
+                case "Emily Elizabeth Dickinson":
+                    name = "res/dickinson.txt";
+                    break;
+
+            }
+        }
         try{
             length1 =  Integer.parseInt(length.getText());
             sentence1 =  Integer.parseInt(sentence.getText());
@@ -40,13 +62,9 @@ public class Controller {
             alert.setHeaderText("Invalid Sentence Inputs");
             alert.setContentText("One of the sentence inputs was not an integer.");
             alert.showAndWait();
+            return;
         }
-
-        System.out.println(length.getText());
-
         output.setText(createPoem());
-        System.out.println(output);
-
     }
     @FXML
     public void setData(){
@@ -56,7 +74,7 @@ public class Controller {
     public String createPoem() throws IOException {
         ArrayList<String> words = new ArrayList<>();
         HashSet<String> unique = new HashSet<>();
-        BufferedReader reader = new BufferedReader(new FileReader("res/tolkein.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(name));
         String line;
         while ((line = reader.readLine()) != null) {
             String[] wordSplit = line.split(" ");
@@ -106,7 +124,6 @@ public class Controller {
                 newran = ThreadLocalRandom.current().nextInt(0, initial.getNext().size());
             }
             ArrayList<String> children = initial.getNext();
-            System.out.println(length1/2);
             for(int i =0;i<(length1-1);i++){
                 Word tempWord = null;
                 for(Word word : wordList){
